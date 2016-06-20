@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+  <!--
+    1.  Submit a form.
+    2.  Prevent form from submitting.
+  -->
+
+  <div id="app" style="margin-top: 25px;"> <!-- This is our view, anything outside this <div>(view) vue won't see. -->
+
+    <!-- Event modifier: ".prevent"  or ".stop" -->
+    <!-- @ lets vue know that on "submit" there is a "handleIt" method that can be used. -->
+    <form action="done.html" @submit.prevent="handleIt">
+
+      <button type="submit" v-show="message"> Submit!! </button>
+
+      </form>
+
+  </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
+
+<!-- Create a new instance(initialize) of #app: -->
+<script>
+
+<!-- This our view model, that binds to the view and binds to the model. -->
+<!-- Methods triggered on your VM need to be nested within a "methods" object. -->
+  new Vue({
+    el: "#app",
+    data: {
+      methods: {
+        handleIt: function() {
+          alert("Handled");
+        }
+      }
+  });
+</script>
+  </body>
+</html>
