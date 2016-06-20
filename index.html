@@ -6,30 +6,49 @@
   </head>
   <body>
 
-<!-- This is our view, anything outside this view(<div>) vue won't see. -->
-<div id="app">
+  <!--
+    1.  Display this error message: "You must enter a message here!" only if <textarea> is empty, it should disapear as soon as text is entered into the form.
+    2.  The same should happen to the "Send Message" <button>, it should only be visible when text is entered in the <textarea>.
+  -->
 
-  <h1>{{ message }}</h1>
-  <input v-model="message">
 
-<!-- This refers to the model or data object for the associated view instance.
-| is a filter/function that, in this case this will change your data to json form.  -->
-  <pre>
-    {{ $data | json }}
-  </pre>
+  <div id="app" style="margin-top: 25px;"> <!-- This is our view, anything outside this <div>(view) vue won't see. -->
 
-</div>
+    <form>
+
+<!--
+v-show: displays or hides(toggles) an element using CSS.
+v-if: conditionally loads or removes an expression.
+-->
+      <span class="error" v-show="!message"> <!-- When using vue's directives we can add any "basic" expression. -->
+
+        You must enter a message here!
+
+      </span><br/>
+
+<!-- First: bind the <textarea> to compare against its value. -->
+      <textarea v-model="message"></textarea><br/>
+
+<!-- Display the button, only if message is not a "falsey" value. -->
+      <button type="submit" v-show="message"> Send Message </button>
+
+      </form>
+
+      <pre>
+        {{ $data | json }}
+      </pre>
+  </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
 
-<!-- Create a new instance of #app: -->
+<!-- Create a new instance(initialice) of #app: -->
 <script>
 
 <!-- This our view model, that binds to the view and binds to the model. -->
   new Vue({
-    el: '#app',
+    el: "#app",
     data: {
-      message: "Hello World"
+      message: ""
     }
   });
 </script>
