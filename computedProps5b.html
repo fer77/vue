@@ -6,7 +6,7 @@
   </head>
   <body>
 
-    <!-- <h1>{{ first }} {{ last }}</h1> -->
+<!-- <h1>{{ first }} {{ last }}</h1> -->
     <h1>{{ fullName }}</h1>
     <input type="text" v-model="first" placeholder="First Name">
     <input type="text" v-model="first" placeholder="Last Name">
@@ -21,11 +21,20 @@
       data: {
         first: "Fernando",
         last: "Fernando",
-        fullName: "Fernando Davila Fernandez"
       },
-      watch: {
-        first: function(first) {
-          alert(first);
+      // Watch can be used like this to get a full name.
+      // watch: {
+      //   first: function(first) {
+      //     this.fullName = first + ' ' + this.last;
+      //   }
+      //   last: function(last) {
+      //     this.fullName = this.first + ' ' + last;
+      //   }
+      // }
+      // However this can be done more efficiently like this:
+      computed: {
+        fullName: function() {
+          return this.first + ' ' + this.last;
         }
       }
     });
