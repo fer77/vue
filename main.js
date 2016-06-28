@@ -1,0 +1,18 @@
+new Vue ({
+  el: '#app',
+
+  data: {
+    tasks: [
+      { body: 'Go to the store', completed: false},
+      { body: 'Go to the bank', completed: false},
+      { body: 'Go to the doctor', completed: true}
+    ]
+  },
+
+  //This can be put inline as part of the @click:...
+  // methods: {
+  //   toggle: function(task) {
+  //     task.completed = !task.completed;
+  //   }
+  // }
+})

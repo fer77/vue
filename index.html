@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style media="screen">
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<!-- "view", anything outside this <div> vue won't see. -->
+<div id="app">
+
+  <ul>
+<!--
+Think of @ as "on"
+@click can be written as @click="toggle(task)", in methods or inline as @click="task.completed = !task.completed"
+-->
+    <li
+    :class="{ 'completed': task.completed }"
+    v-for="task in tasks"
+    @click="task.completed = !task.completed">{{ task.body }}</li>
+  </ul>
+
+</div><!-- app -->
+
+<!-- vue.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
+<!-- #app -->
+<script src="main.js"></script>
+
+  </body>
+</html>
