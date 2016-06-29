@@ -1,3 +1,8 @@
+Vue.component('tasks', {
+  props: ['list'],
+  template: '#tasks-template'
+});
+
 new Vue ({
   el: '#app',
 
@@ -7,7 +12,7 @@ new Vue ({
       { body: 'Go to the bank', completed: false},
       { body: 'Go to the doctor', completed: true}
     ]
-  },
+  }
 
   //This can be put inline as part of the @click:...
   // methods: {
@@ -15,4 +20,4 @@ new Vue ({
   //     task.completed = !task.completed;
   //   }
   // }
-})
+});

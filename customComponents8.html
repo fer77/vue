@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style media="screen">
+      .completed {
+        text-decoration: line-through;
+      }
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
+<!-- "view", anything outside this <div> vue won't see. -->
+<div id="app">
+
+  <tasks :list="tasks"></tasks>
+  <tasks :list="[{ body: "do this too", completed: false }]"></tasks>
+
+</div><!-- app -->
+
+<template id="tasks-template">
+<ul>
+  <li
+  :class="{ "completed": task.completed }"
+  v-for="task in list"
+  @click="task.completed = !task.completed"
+  >
+
+    {{task.body}}
+
+  </li>
+</ul>
+</template><!-- "tasks-template -->
+
+<!-- vue.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.25/vue.min.js"></script>
+<!-- #app -->
+<script src="main.js"></script>
+
+  </body>
+</html>
