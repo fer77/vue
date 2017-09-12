@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ message }}</h1>
+
+      <!-- Updates heading as text is typed into the input -->
+      <input v-model="message">
+
+      <pre>
+        <!-- This will reference the model or data object and show how the input and the heading are binded on the browser -->
+        {{ $data | json }}
+      </pre>
+    </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello World'
+      }
+    });
+  </script>
+  </body>
+</html>
