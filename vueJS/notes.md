@@ -40,3 +40,33 @@ new Vue({
   //...
 });
 ```
+
+
+## 3
+
+Event handling
+---
+
+_Methods_ need to be nested within a _methods_ object:
+
+```javascript
+new Vue({
+  //...
+  methods: {
+    someFunction: function(e) {
+      alert('some alert');
+    }
+  }
+  //...
+});
+```
+
+**event modifier** modifiers are directive postfixes denoted by a dot.
+
+- `.stop`
+- `.prevent`
+- `.capture`
+- `.self`
+- `.once`
+
+Although this can easily be done inside methods, it is better if the methods handle only data logic rather than having dealing with DOM event details.
