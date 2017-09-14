@@ -6,23 +6,38 @@
   </head>
   <body>
     <div id="app">
-      <form>
-        <span class="error" v-show="!message">Please enter a message</span></br>
+<!-- 'v-on:submit.prevent' Same as adding 'e.preventDefault();' to our 'handleIt' method, which will prevent normal 'action=""' behavior of the form. -->
+      <!-- <form action="done.html" @submit.prevent="handleIt">
 
-        <textarea v-model="message"></textarea></br>
+        <button type="submit">Submit</button>
 
-        <button type="submit" v-show="message">Submit</button>
+      </form> -->
 
-        <pre>{{ $data | json }}</pre>
-      </form>
+      <!-- <button type="submit" @click="updateCount"> -->
+      <!-- or  -->
+      <button type="submit" @click="count += 1">
+      <!-- Basic expressions can be inlined when they are small, simple things -->
+        Counter: {{ count }}
+      </button>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
     <script>
       new Vue({
         el: '#app',
+        // methods: {
+        //   handleIt: function() {
+        //     alert('Handled');
+        //   }
+        // }
         data: {
-          message: ''
+          count: 0
+        },
+        methods: {
+          updateCount: function() {
+            this.count += 1; // Vue maps our references for us.
+          }
         }
       });
     </script>
