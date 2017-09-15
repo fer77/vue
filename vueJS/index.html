@@ -6,31 +6,30 @@
   </head>
   <body>
     <div id="app">
-<!-- 'v-on:submit.prevent' Same as adding 'e.preventDefault();' to our 'handleIt' method, which will prevent normal 'action=""' behavior of the form. -->
-      <!-- <form action="done.html" @submit.prevent="handleIt">
-
-        <button type="submit">Submit</button>
-
-      </form> -->
-
-      <!-- <button type="submit" @click="updateCount"> -->
-      <!-- or  -->
-      <button type="submit" @click="count += 1">
-      <!-- Basic expressions can be inlined when they are small, simple things -->
-        Counter: {{ count }}
-      </button>
-
+      <counter subject="Likes"></counter>
+      <counter subject="Dislikes"></counter>
     </div>
+
+    <!-- Template and xript can be moved to its own file -->
+    <template id="counter-template">
+      <div>
+        <h1>{{ subject }}</h1>
+
+        <button @click="count += 1">Count: {{ count }}</button>
+      </div>
+    </template>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
     <script>
+    Vue.component('counter', {
+      template: '#counter-template',
+      props: ['subject'],
+      data: function() {
+        return { count: 0 }; // Has to be done like this, because a component can be used in more than one place.
+      }
+    });
       new Vue({
         el: '#app',
-        // methods: {
-        //   handleIt: function() {
-        //     alert('Handled');
-        //   }
-        // }
         data: {
           count: 0
         },
