@@ -115,3 +115,23 @@ Vue.component('counter', {
 //...
 });
 ```
+
+## 5
+
+**computed property** In-template expressions are very convenient, but meant for simple operations you want to include in your template more than once.
+
+_computed properties_ are reactive.
+
+```javascript
+new Vue({
+    //...
+    computed: {
+        skill: function() {
+          return 'Advanced';
+        }
+    }
+    //...
+});
+```
+
+**watch** While _computed properties_ are appropriate in most cases, there are times when a custom watcher is necessary to react to data changes. The use of _watchers_ is most useful when you want to perform asynchronous or expensive operations in response to changing data.
