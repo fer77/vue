@@ -1,44 +1,57 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
     <div id="app">
-      <counter subject="Likes"></counter>
-      <counter subject="Dislikes"></counter>
+        <h1>Skill: {{ skill }}</h1>
+
+        <input type="text" v-model="points">
+
+        <h1>{{ first }} {{ last }}</h1>
+        <h1>{{ fullName }}</h1>
+        <!-- If first name or last name change it won't be reflected in 'fullName' -->
+        <input type="text" v-model="first" placeholder="first name">
+        <input type="text" v-model="last" placeholder="last name">
     </div>
-
-    <!-- Template and xript can be moved to its own file -->
-    <template id="counter-template">
-      <div>
-        <h1>{{ subject }}</h1>
-
-        <button @click="count += 1">Count: {{ count }}</button>
-      </div>
-    </template>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
     <script>
-    Vue.component('counter', {
-      template: '#counter-template',
-      props: ['subject'],
-      data: function() {
-        return { count: 0 }; // Has to be done like this, because a component can be used in more than one place.
-      }
-    });
-      new Vue({
-        el: '#app',
-        data: {
-          count: 0
-        },
-        methods: {
-          updateCount: function() {
-            this.count += 1; // Vue maps our references for us.
-          }
-        }
-      });
+        new Vue({
+            el: '#app',
+            data: {
+                points: '50', 
+                first: 'Bob',
+                last: 'Belcher',
+                // fullName: 'Bob Belcher'
+            },
+            computed: {
+                skill: function(params) {
+                    if (this.points <= 100) {
+
+                        return 'Beginner';
+                    }
+
+                    return 'Advanced';
+                },
+                fullName: function() {
+                    return this.first + ' ' + this.last;
+                }
+            },
+            watch: {
+                // Watch for changes if first and last name.  For something like this it is better to use a computed property.
+                // first: function(first) {
+                //     this.fullName = first + ' ' + this.last;
+                // },
+                // last: function(last) {
+                //     this.fullName = this.first + ' ' + last;
+                // }
+            }
+        });
     </script>
-  </body>
+</body>
 </html>
