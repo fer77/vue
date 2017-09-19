@@ -135,3 +135,17 @@ new Vue({
 ```
 
 **watch** While _computed properties_ are appropriate in most cases, there are times when a custom watcher is necessary to react to data changes. The use of _watchers_ is most useful when you want to perform asynchronous or expensive operations in response to changing data.
+
+## 6
+
+[v-for](https://vuejs.org/v2/guide/list.html#v-for-on-a-lt-template-gt)
+
+**:** Vue's short hand for binding.
+
+```html
+<!-- ... -->
+  <div v-for="plan in plans">
+    <plan :plan="plan"></plan>
+  </div>
+  <!-- ... -->
+```
