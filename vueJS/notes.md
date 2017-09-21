@@ -152,3 +152,12 @@ new Vue({
 
 ## 7
 
+## 8
+
+Creating custome components.
+
+```javascript
+Vue.component('tasks', {
+  template: '#tasks-template'
+});
+```
