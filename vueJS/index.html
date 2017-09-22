@@ -11,23 +11,25 @@
 </head>
 <body>
     <div id="app">
-    <!-- Custom components have to be inside a 'root' in order to work -->
-        <tasks :list="tasks">
-        <!-- Be explicit about which custom properties are allowed -->
-        </tasks>
-    <!-- can have multiple instances of this component -->
         <tasks :list="tasks"></tasks>
     </div>
 
     <template id="tasks-template">
-        <ul>
-            <li :class="{ 'completed': task.completed }"
-                v-for="task in list"
-                @click="task.completed = !task.completed;"
-            >
-            {{ task.body }}
-            </li>
-        </ul>
+        <div>
+            <h1>
+                To do: 
+                <span v-show="remaining">{{ remaining }}</span>
+            </h1>
+            
+            <ul v-show="list.length">
+                <li :class="{ 'completed': task.completed }"
+                    v-for="task in list"
+                    @click="task.completed = !task.completed;"
+                >
+                {{ task.body }}
+                </li>
+            </ul>
+        </div>
     </template>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
