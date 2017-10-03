@@ -1,38 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        .completed { text-decoration: line-through; }
-    </style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-    <div id="app">
-        <tasks :list="tasks"></tasks>
-    </div>
+	<div id="app">
+		<alert type="success">
+			<strong>Alert message!!</strong>
+		</alert>
+		<alert type="error">
+			<strong>Alert message!!</strong>
+		</alert>
+		<alert type="">
+			<strong>Alert message!!</strong>
+		</alert>
+	</div>
+	
+	<template id="alert-template">
+		<div>
+			<div :class="alertClasses" v-show="show">
+				<!-- take anything that is typed in the alert component and places it here -->
+				<slot></slot>
+				<span class="Alert__close" @click="show = false">X</span>
+			</div>
+		</div>
+	</template>
 
-    <template id="tasks-template">
-        <div>
-            <h1>
-                To do: 
-                <span v-show="remaining">{{ remaining }}</span>
-            </h1>
-            
-            <ul v-show="list.length">
-                <li :class="{ 'completed': task.completed }"
-                    v-for="task in list"
-                    @click="task.completed = !task.completed;"
-                >
-                {{ task.body }}
-                </li>
-            </ul>
-        </div>
-    </template>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
     <script src="main.js"></script>
 </body>
 </html>
