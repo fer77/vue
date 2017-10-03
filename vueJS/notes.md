@@ -169,3 +169,5 @@ Vue.component('tasks', {
 ## 11
 
 ## 12
+
+**explecitly declare your components**.
