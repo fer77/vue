@@ -181,3 +181,19 @@ Styles for each _Vue_ component can be added within the component's file itself 
  ```
 
  A style language can be declared and then added it with _npm_.
+
+## 14
+
+**Filters**
+
+Filters should be appended to the end of the JS expression, denoted by the “pipe” symbol:
+
+```javascript
+<!-- in mustaches -->
+{{ message | capitalize }}
+<!-- in v-bind -->
+<div v-bind:id="rawId | formatId"></div>
+```
+
+**NOTE**
+all filters have been removed. It’s now recommended to use libraries for solving problems in each domain (e.g. date-fns to format dates and accounting for currencies), or write your own.
