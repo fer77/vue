@@ -171,3 +171,13 @@ Vue.component('tasks', {
 ## 12
 
 **explecitly declare your components**.
+
+## 13
+
+Styles for each _Vue_ component can be added within the component's file itself like so:
+
+```html
+ <style lang="sass"></style>
+ ```
+
+ A style language can be declared and then added it with _npm_.
