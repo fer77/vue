@@ -197,3 +197,45 @@ Filters should be appended to the end of the JS expression, denoted by the “pi
 
 **NOTE**
 all filters have been removed. It’s now recommended to use libraries for solving problems in each domain (e.g. date-fns to format dates and accounting for currencies), or write your own.
+
+## 15
+
+How communication between components is handled.
+
+**$dispatch** will broadcasts a message up the chain to every parent component upto the Vue vm.
+**$broadcast** broadcasts a message down the chain.
+
+_$dispatch_ and _$broadcast_ have been removed. _$dispatch_ and _$broadcast_ did not solve communication between sibling components. In these cases, you can actually listen to an _$emit_ from a child with _v-on_, which allows the use of events with added explicitness.
+
+Communication between distant descendants/ancestors, _$emit_ is not enough. Instead, the easiest way is to use a centralized event hub. This allows communication between components no matter where they are in the component tree.
+
+[To listen to these events]:(https://vuejs.org/v2/guide/migration.html#dispatch-and-broadcast-replaced)
+
+```javascript
+// This is an event hub that will be used in every
+// component to communicate between them.
+var eventHub = new Vue();
+
+// NewTodoInput
+// ...
+methods: {
+  addTodo: function () {
+    eventHub.$emit('add-todo', { text: this.newTodoText })
+    this.newTodoText = ''
+  }
+}
+
+// Todos
+// ...
+created: function () {
+  eventHub.$on('add-todo', this.addTodo)
+  eventHub.$on('delete-todo', this.deleteTodo)
+},
+methods: {
+  addTodo: function (newTodo) {
+    this.todos.push(newTodo)
+  }
+  }
+```
+
+**remember** `v-on:` can be replaced with `@`
