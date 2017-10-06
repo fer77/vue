@@ -239,3 +239,72 @@ methods: {
 ```
 
 **remember** `v-on:` can be replaced with `@`
+
+## 15
+
+**NOTE**
+Within our Vue component the `this` object can access [directive hook arguments](https://vuejs.org/v2/guide/custom-directive.html#Hook-Functions).
+
+**common header** everytime an ajax request is submitted send _header_
+
+Default set of directives _v-model_ and _v-show_, Vue also allows custom directives. The primary form of code reuse and abstraction is components - however there may be cases where you need some low-level DOM access, this is where custom directives could be useful.
+
+Creating directives:
+
+```javascript
+//Common headers
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('input[name="_token"]').value;
+
+// Register a global custom directive called v-focus
+Vue.directive('ajax', {
+  bind: function() {
+    // This method will be called when v-ajax is attached to an html tag.
+    this.el.addEventListener('submit', this.onSubmit.bind(this));
+  },
+  update: function(value) {
+    // This method will be called everytime the value changes.
+  },
+  unbind: function() {
+    // Unbinds any event listeners when finished.
+  },
+  onSubmit: function(e) {
+    // this object now refers to the form being submited. So bind this to the component (.bind(this)).
+    e.preventDefault();
+
+    // Gives us acces to the Vue model.
+    this.vm
+        .$http[this.getRequestType()](this.el.action)
+        .then(this.onComplete.bind(this))
+        .catch(this.onError.bind(this));
+  },
+  getRequestType: function() {
+    var method = this.el.querySelector('input[name="_method"]');
+    // In case method is not given, extract it from the form
+    return (method ? method.value : this.el.method).toLowerCase(); // will give us delete or post or get...
+  },
+  onComplete: function() {
+    if (this.params.complete) {
+      alert(this.params.complete);
+    }
+  },
+  onError: function(response) {
+    alert(response.data.message);
+  }
+});
+```
+
+or if you want to register a directive locally, components also accept a directives option:
+
+```javascript
+directives: {
+  ajax: {
+    // directive definition
+  }
+}
+```
+
+Then in a template use _v-focus_ attribute on any element:
+
+```javascript
+<input v-ajax>
+```
