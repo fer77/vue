@@ -1,9 +1,9 @@
 Vue.component('message', {
   
 });
-
-var newMessage = new Vue();
-
 new Vue({
-	el: '#app'
+	el: '#app',
+	data: {
+		show: true
+	}
 });
