@@ -240,7 +240,7 @@ methods: {
 
 **remember** `v-on:` can be replaced with `@`
 
-## 15
+## 16
 
 **NOTE**
 Within our Vue component the `this` object can access [directive hook arguments](https://vuejs.org/v2/guide/custom-directive.html#Hook-Functions).
@@ -307,4 +307,45 @@ Then in a template use _v-focus_ attribute on any element:
 
 ```javascript
 <input v-ajax>
+```
+
+## 17
+
+Custom Transition Classes
+---
+The following attributes specify custom transition classes:
+
+- _enter-class_
+- _enter-active-class_
+- _enter-to-class (2.1.8+)_
+- _leave-class_
+- _leave-active-class_
+- _leave-to-class (2.1.8+)_
+
+This is especially useful when you want to combine Vue with an existing CSS animation library, such as Animate.css.
+
+```html
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+
+<div id="app">
+  <button @click="show = !show">
+    Toggle render
+  </button>
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated tada"
+    leave-active-class="animated bounceOutRight"
+  >
+    <p v-if="show">hello</p>
+  </transition>
+</div>
+```
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    show: true
+  }
+})
 ```
