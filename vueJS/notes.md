@@ -349,3 +349,46 @@ new Vue({
   }
 })
 ```
+
+## 18
+
+Extract the shared state of components into its own object:
+
+```javascript
+var store = {
+  username: 'Bob Belcher'
+};
+new Vue({
+  el: '#app',
+  data: store,
+  components: {
+    notification: {
+      data: function() {
+        return store;
+      },
+      template: '<h2>{{ username }}: <slot></slot></h2>'
+    }
+  }
+});
+```
+
+or create a shared data section:
+
+```javascript
+//...
+new Vue({
+  el: '#app',
+  data: {
+    misc: 'data',
+    shared: store
+    },
+//...
+```
+
+and reference it like this:
+
+```html
+<!-- //... -->
+<h1>Wlecome back, {{ shared.username }}</h1>
+<!-- //... -->
+```
