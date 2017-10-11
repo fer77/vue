@@ -5,18 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
 	<link rel="stylesheet" href="./styles.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
 </head>
 <body>
 	<div id="app">
-			<transition 
-			name="fade"
-			enter-active-class="animated flipInX"
-			leave-active-class="animated fadeOut"
-			>
-				<h1 v-if="show">Hello World</h1>
-			</transition>
-		<button @click="show = !show">fade</button>
+		<h1>Wlecome back, {{ username }}</h1>
+		<notification>This is a notification!</notification>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
