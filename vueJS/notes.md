@@ -392,3 +392,26 @@ and reference it like this:
 <h1>Wlecome back, {{ shared.username }}</h1>
 <!-- //... -->
 ```
+
+## 19
+
+Templates can be included in your app in a template:
+
+```javascript
+Vue.component('home-page', {
+  template: '<h2>Home Page</h2>'
+});
+```
+
+or inline in your html:
+
+1. set the default component as the variable and pass it through to the master page.
+2. anything we nest in the about view will be displayed here.
+
+```html
+<component is="about-page" inline-template>
+        <h2>About Page</h2>
+
+        <button @click="doSomething"></button>
+</component>
+```
