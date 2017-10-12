@@ -1,18 +1,14 @@
-Vue.component('message', {  });
+Vue.component('home-page', {
+	template: '<h2>Home Page</h2>'
+});
 
-var store = {
-  username: 'Bob Belcher'
-};
+Vue.component('about-page', {
+	template: '<h2>About Page</h2>'
+});
 
 new Vue({
 	el: '#app',
-	data: store,
-	components: {
-		notification: {
-			data: function() {
-				return store;
-			},
-			template: '<h2>{{ username }}: <slot></slot></h2>'
-		}
+	data: {
+		currentView: 'home-page'
 	}
 });

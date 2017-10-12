@@ -8,8 +8,14 @@
 </head>
 <body>
 	<div id="app">
-		<h1>Wlecome back, {{ username }}</h1>
-		<notification>This is a notification!</notification>
+		<div>
+			<component :is="currentView" inline template>
+				<h2>Home Page</h2>
+			</component>
+		</div>
+
+		<a href="#" @click="currentView = 'home-page'">Home</a>
+		<a href="#" @click="currentView = 'about-page'">About</a>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.0/vue.js"></script>
