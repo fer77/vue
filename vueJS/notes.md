@@ -415,3 +415,23 @@ or inline in your html:
         <button @click="doSomething"></button>
 </component>
 ```
+
+## 20
+
+1. `app.js` import Vue and start a new Vue instance,
+2. import your component,
+3. build your instance and bind it to `#app`
+
+```javascript
+//...
+
+Vue.component('HomeView', require('./components/HomeView.vue'));
+
+const app = new Vue({
+    el: '#app',
+    components: {
+      HomeView
+    } // <component is="home-view"... or <home-view></home-view>
+
+   //...
+```
