@@ -16,7 +16,13 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('HomeView', require('./components/HomeView.vue'));
+Vue.component('AboutView', require('./components/AboutView.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+    	HomeView,
+    	AboutView
+    } // <component is="home-view"... or <home-view></home-view>
 });
