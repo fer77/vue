@@ -11,6 +11,12 @@
 |
 */
 
+Route::get('begin', function () {
+    session()->flash('status', 'You are signed in');
+
+    return redirect('/');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
