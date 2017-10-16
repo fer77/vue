@@ -162,7 +162,7 @@ Vue.component('tasks', {
 });
 ```
 
-## 9 
+## 9
 
 ## 10
 
@@ -434,4 +434,54 @@ const app = new Vue({
     } // <component is="home-view"... or <home-view></home-view>
 
    //...
+```
+
+## 21
+
+**ready** _replaced_
+
+Use the new mounted hook instead:
+
+```javascript
+mounted() {
+  setTimeout(
+    () => this.show = false,
+    3000
+  )
+}
+```
+
+Transitioning Single Elements/Components
+---
+
+Vue provides a transition wrapper component, allowing you to add entering/leaving transitions for any element or component:
+
+```html
+<template>
+  <transition name="fade">
+    <div
+      v-bind:class="[activeClass, errorClass, successClass]"
+      v-show="show">
+      <slot></slot>
+    </div>
+  </transition>
+</template>
+```
+
+```javascript
+new Vue({
+  el: '#demo',
+  data: {
+    show: true
+  }
+})
+```
+
+```css
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0
+}
 ```
