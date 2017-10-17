@@ -485,3 +485,44 @@ new Vue({
   opacity: 0
 }
 ```
+
+## 22
+
+[_Mixins_](https://vuejs.org/v2/guide/mixins.html#ad) in Vue are very much like PHP traits. Create an object, mix it into an existing Vue to create new re-usable functionality.
+
+```javascript
+const FetchesUser = {
+	methods: {
+		fetchUser() {
+			alert('fetch the user');
+		}
+	}
+};
+
+new Vue ({
+	el: '#app',
+// Import your functionality:
+	mixins: [FetchesUser],
+	mounted() {
+		this.fetchUser();
+	}
+});
+```
+
+When a mixin and the component itself contain overlapping options, they will be “merged”. For example, hook functions with the same name are merged into an array so that all of them will be called (mixin hooks will be called before the component’s own hooks):
+
+```javascript
+var mixin = {
+  created: function () {
+    console.log('mixin hook called')
+  }
+}
+new Vue({
+  mixins: [mixin],
+  created: function () {
+    console.log('component hook called')
+  }
+})
+// => "mixin hook called"
+// => "component hook called"
+```
