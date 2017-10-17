@@ -1,14 +1,16 @@
-Vue.component('home-page', {
-	template: '<h2>Home Page</h2>'
-});
+const FetchesUser = {
+	methods: {
+		fetchUser() {
+			alert('fetch the user');
+		}
+	}
+};
 
-Vue.component('about-page', {
-	template: '<h2>About Page</h2>'
-});
-
-new Vue({
+new Vue ({
 	el: '#app',
-	data: {
-		currentView: 'home-page'
+
+	mixins: [FetchesUser],
+	mounted() {
+		this.fetchUser();
 	}
 });
