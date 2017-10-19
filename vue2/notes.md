@@ -35,3 +35,26 @@ new Vue({
   <p>The value of our input is {{ message }}.</p>
 </div>
 ```
+
+## 2
+
+Vue _proxies_ your data so that it can be accessed (in dev tools) as:
+
+```javascript
+$vm0.message;
+
+// can be changed here tools
+$vm0.message = 'changed';
+```
+
+**single source of truth** this data object defines our truth:
+
+```javascript
+//...
+data: {
+  message: 'Hello World!'
+}
+//...
+```
+
+Our data becomes our single source of truth.
