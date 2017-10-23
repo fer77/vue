@@ -6,16 +6,29 @@
   </head>
   <body>
     <div id="root">
-      <input id="input" type="text" v-model="message">
-      <p>The value of our input is {{ message }}.</p>
+      <ul>
+        <li v-for="name in names">{{ name }}</li>
+      </ul>
+
+      <input id="input" type="text">
+      <button id="button">Add Name</button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
     <script>
-      new Vue({
+      var app = new Vue({
         el:'#root',
         data: {
-          message: 'Hello World!'
+          names: ['Bob', 'Linda', 'Tina', 'Gene', 'Louise']
+        },
+        mounted() {
+          // long form
+          document.querySelector('#button').addEventListener('click', () => {
+            let name = document.querySelector('#input');
+
+            app.names.push(name.value);
+            name.value = '';
+          });
         }
       });
     </script>
