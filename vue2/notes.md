@@ -58,3 +58,18 @@ data: {
 ```
 
 Our data becomes our single source of truth.
+
+## 3
+
+**v-for** directive can be used to render a list of items based on an array. The `v-for` directive requires the special syntax of `item in items`, where `items` is the array's data and `item` is the alias for the array element being iterated on. You can also use `of` as the delimiter instead of `in`, so that it is closer to JavaScript’s syntax for iterators.
+
+Inside `v-for` blocks we have full access to parent scope properties.
+
+_Side Note_
+---
+```html
+<li v-for="name in names">{{ name }}</li>
+<!-- or -->
+<li v-for="name in names" v-text="name"></li>
+```
+---
