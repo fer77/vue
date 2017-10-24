@@ -73,3 +73,12 @@ _Side Note_
 <li v-for="name in names" v-text="name"></li>
 ```
 ---
+
+## 4
+
+`v-on` registers an event listener. When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+
+**shorthand**: `@`
+
+`v-on:click`
+`v-on:keyUp`
