@@ -3,15 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style>
+      .color-red {
+        color: red;
+      }
+      .color-blue {
+        color: blue;
+      }
+      .isLoading {
+        background: red;
+      }
+    </style>
   </head>
   <body>
     <div id="root">
-      <ul>
-        <li v-for="name in names">{{ name }}</li>
-      </ul>
+      <h1 v-bind:class="className">Hello World!</h1>
 
-      <input id="input" type="text" v-model="newName">
-      <button v-on:click="addName">Add Name</button>
+      <button v-bind:title="title">Hello</button>
+
+      <button :class="{ 'isLoading' : isLoading }" :disabled="disable" @click="toggleClass">Toggle</button>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
@@ -19,14 +29,15 @@
       var app = new Vue({
         el:'#root',
         data: {
-          newName: '',
-          names: ['Bob', 'Linda', 'Tina', 'Gene', 'Louise']
+          title: 'Title defined in Vue',
+          className: 'color-red',
+          isLoading: false,
+          disable: false
         },
         methods: {
-          addName() {
-            // When referencing properties in our data object, everything is "proxied" correctly.
-            this.names.push(this.newName);
-            this.newName = '';
+          toggleClass() {
+            this.isLoading = true;
+            this.disable = true;
           }
         }
       });
