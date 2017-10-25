@@ -76,9 +76,31 @@ _Side Note_
 
 ## 4
 
-`v-on` registers an event listener. When used on a normal element, it listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
+`v-on` listens to DOM events and runs some JavaScript when triggered. When used on a normal element, `v-on` listens to **native DOM events** only. When used on a custom element component, it also listens to **custom events** emitted on that child component.
 
 **shorthand**: `@`
 
 `v-on:click`
 `v-on:keyUp`
+
+## 5
+
+**v-bind** dealing with string concatenation is annoying and can be error-prone. `v-bind` is used with `class` and `style` to manipulate an element’s class list, inline styles and attributes.
+
+**shorthand**: `:`
+
+Bind the title attribute for a tag to whatever is in the data object called title:
+
+```html
+<!-- ... -->
+<button v-bind:title="title">Hello</button>
+<!-- ... -->
+```
+
+Objects can be passed to toggle classes:
+
+```html
+<!-- ... -->
+<button v-bind:title="{ 'isLoading' : isLoading }" @click="toggleClass">Toggle</button>
+<!-- ... -->
+```
