@@ -104,3 +104,39 @@ Objects can be passed to toggle classes:
 <button v-bind:title="{ 'isLoading' : isLoading }" @click="toggleClass">Toggle</button>
 <!-- ... -->
 ```
+
+## 6
+
+In-template expressions are very convenient, but they are meant for simple operations:
+
+```html
+
+<!-- ... -->
+  <h1 v-text="new Date()"></h1>
+<!-- ... -->
+
+```
+
+Complex logic, you should use a computed property.
+
+```html
+
+<!-- ... -->
+  <h1>{{ message.split('').reverse().join('') }}</h1>
+<!-- ... -->
+  <h1>{{ reverseText }}</h1>
+<!-- ... -->
+
+```
+
+```javascript
+
+//...
+computed: {
+  reverseText() {
+    return this.message.split('').reverse().join('');
+  }
+}
+//...
+
+```
