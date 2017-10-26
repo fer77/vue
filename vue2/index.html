@@ -3,25 +3,22 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <style>
-      .color-red {
-        color: red;
-      }
-      .color-blue {
-        color: blue;
-      }
-      .isLoading {
-        background: red;
-      }
-    </style>
   </head>
   <body>
     <div id="root">
-      <h1 v-bind:class="className">Hello World!</h1>
+      <h1>{{ message.split('').reverse().join('') }}</h1>
+      <h1>{{ reverseText }}</h1>
 
-      <button v-bind:title="title">Hello</button>
+      <h2>tasks</h2>
+      <ul>
+        <li v-for="task in tasks" v-text="task.description">
+        </li>
+      </ul>
 
-      <button :class="{ 'isLoading' : isLoading }" :disabled="disable" @click="toggleClass">Toggle</button>
+      <h2>completed</h2>
+      <ul>
+        <li v-for="task in completeTasks" v-text="task.description"></li>
+      </ul>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
@@ -29,15 +26,21 @@
       var app = new Vue({
         el:'#root',
         data: {
-          title: 'Title defined in Vue',
-          className: 'color-red',
-          isLoading: false,
-          disable: false
+          message: 'Hello World!',
+          tasks: [
+            { description: 'some random task 1', completed: true },
+            { description: 'some random task 2', completed: false },
+            { description: 'some random task 3', completed: false },
+            { description: 'some random task 4', completed: false },
+            { description: 'some random task 5', completed: true }
+          ]
         },
-        methods: {
-          toggleClass() {
-            this.isLoading = true;
-            this.disable = true;
+        computed: {
+          reverseText() {
+            return this.message.split('').reverse().join('');
+          },
+          completeTasks() {
+            return this.tasks.filter(task => task.completed);
           }
         }
       });
