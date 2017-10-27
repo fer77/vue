@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="root">
+      <h1>{{ message.split('').reverse().join('') }}</h1>
+      <h1>{{ reverseText }}</h1>
+
+      <h2>tasks</h2>
+      <ul>
+        <li v-for="task in tasks" v-text="task.description">
+        </li>
+      </ul>
+
+      <h2>completed</h2>
+      <ul>
+        <li v-for="task in completeTasks" v-text="task.description"></li>
+      </ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+        el:'#root',
+        data: {
+          message: 'Hello World!',
+          tasks: [
+            { description: 'some random task 1', completed: true },
+            { description: 'some random task 2', completed: false },
+            { description: 'some random task 3', completed: false },
+            { description: 'some random task 4', completed: false },
+            { description: 'some random task 5', completed: true }
+          ]
+        },
+        computed: {
+          reverseText() {
+            return this.message.split('').reverse().join('');
+          },
+          completeTasks() {
+            return this.tasks.filter(task => task.completed);
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
