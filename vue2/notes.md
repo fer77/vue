@@ -140,3 +140,22 @@ computed: {
 //...
 
 ```
+
+## 7
+
+**components** extend basic HTML elements and encapsulate reusable code. At a high level, components are custom elements that Vue attaches behavior to.
+
+Anything inside the `<slot>` tags is considered _fallback content_.
+
+
+Components cannot use `data:` object inside a component. `data()` must be a function that returns an object:
+
+```javascript
+//...
+
+  data: function () {
+    return //...
+  }
+  
+//...
+```
