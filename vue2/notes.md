@@ -159,3 +159,7 @@ Components cannot use `data:` object inside a component. `data()` must be a func
   
 //...
 ```
+
+## 8
+
+Whenever a template is in a component, it needs to have a single root element.
