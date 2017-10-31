@@ -163,3 +163,23 @@ Components cannot use `data:` object inside a component. `data()` must be a func
 ## 8
 
 Whenever a template is in a component, it needs to have a single root element.
+
+## 9
+
+A **prop** is a custom attribute for passing information from parent components. A child component needs to _explicitly_ declare the `props` it expects to receive using the `props` option:
+
+```javascript
+Vue.component('child', {
+  // declare the props
+  props: ['message'],
+  // like data, the prop can be used inside templates and
+  // is also made available in the vm as this.message
+  template: '<span>{{ message }}</span>'
+})
+```
+
+Then we can pass a plain string to it like so:
+
+```html
+<child message="hello!"></child>
+```
