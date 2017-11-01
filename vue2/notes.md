@@ -183,3 +183,29 @@ Then we can pass a plain string to it like so:
 ```html
 <child message="hello!"></child>
 ```
+
+## 10
+
+A parent-child component relationship works as **props down**, **events up**. The parent passes data down to the child via **props**, and the child sends messages to the parent via **events**:
+
+```html
+  <modal v-show="showModal" @close="showModal = false"></modal>
+  <button class="button is-info" @click="showModal = true">Modal</button>
+```
+
+```javascript
+Vue.component('modal', {
+  template: `
+  <!-- //... -->
+    <button class="modal-close is-large" aria-label="close" @click="$emit('close')"></button>
+  <!-- //... -->
+  `
+});
+
+var app = new Vue({
+//...
+  data: {
+    showModal: false
+  }
+});
+```
