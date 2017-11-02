@@ -209,3 +209,7 @@ var app = new Vue({
   }
 });
 ```
+
+## 11
+
+Remember that _props_ are immutable.  If mutability is desired use computed properties.
