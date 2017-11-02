@@ -6,7 +6,7 @@
     <!-- BULMA -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css" />
     <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto|Slabo+27px" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+20px|Slabo+27px" rel="stylesheet">
     <style>
       h1, h2, h3, h4, h5, h6 {
         font-family: 'Slabo 27px', serif;
@@ -22,10 +22,28 @@
   <body>
     <div id="root" class="container">
 
-      <modal v-show="showModal" @close="showModal = false">
-          <p>Creative venture learning curve paradigm shift graphical user interface startup metrics interaction design influencer channels.</p>
-      </modal>
-      <button class="button is-info" @click="showModal = true">Modal</button>
+      <navigation-tabs>
+        <tab name="About Us" :selected="true">
+          <h1 class="title">About us page</h1>
+          <div class="content">
+            <p class="subtitle">Could it be love? I know what an erection feels like, Michael. No, it's the opposite. It's like my heart is getting hard.</p>
+          </div>
+        </tab>
+
+        <tab name="Our Company">
+          <h1 class="title">Our company page</h1>
+          <div class="content">
+            <p class="subtitle">That was Tom Cruise, the actor. They said he was some kind of scientist.</p>
+          </div>
+        </tab>
+
+        <tab name="Contact Us">
+          <h1 class="title">Contact us page</h1>
+          <div class="content">
+            <p class="subtitle">I'm gonna build me an airport, put my name on it. Why, Michael? So you can fly away from your feelings?</p>
+          </div>
+        </tab>
+      </navigation-tabs>
       
     </div>
 
