@@ -22,28 +22,11 @@
   <body>
     <div id="root" class="container">
 
-      <navigation-tabs>
-        <tab name="About Us" :selected="true">
-          <h1 class="title">About us page</h1>
-          <div class="content">
-            <p class="subtitle">Could it be love? I know what an erection feels like, Michael. No, it's the opposite. It's like my heart is getting hard.</p>
-          </div>
-        </tab>
+      <!-- child component -->
+      <coupon @applied="onCouponApplied"></coupon>
 
-        <tab name="Our Company">
-          <h1 class="title">Our company page</h1>
-          <div class="content">
-            <p class="subtitle">That was Tom Cruise, the actor. They said he was some kind of scientist.</p>
-          </div>
-        </tab>
-
-        <tab name="Contact Us">
-          <h1 class="title">Contact us page</h1>
-          <div class="content">
-            <p class="subtitle">I'm gonna build me an airport, put my name on it. Why, Michael? So you can fly away from your feelings?</p>
-          </div>
-        </tab>
-      </navigation-tabs>
+      <!-- parent component, that depends on an event being $emit[ed] from a child component -->
+      <h1 v-if="couponApplied">Your coupon saved you 100% on today's purchase!</h1>
       
     </div>
 
