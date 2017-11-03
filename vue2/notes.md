@@ -213,3 +213,40 @@ var app = new Vue({
 ## 11
 
 Remember that _props_ are immutable.  If mutability is desired use computed properties.
+
+## 12
+
+Communication between components:
+
+1. Vue root instance needs to be notified when a coupon is applied `@` (`v-on`):
+
+```html
+<!-- //... -->
+<coupon @applied="onCouponApplied"></coupon>
+<!-- //... -->
+```
+
+Parent component depends on an event being `$emit`[ed] from a child component:
+
+```javascript
+Vue.component('coupon', {
+  template: `<input placeholder="Enter coupon code" @blur="onCouponApplied" />`,
+  methods: {
+    onCouponApplied() {
+      this.$emit('applied');
+    }
+  }
+});
+
+var app = new Vue({
+  //...
+  data: {
+    couponApplied: false
+  },
+  methods: {
+    onCouponApplied() {
+      this.couponApplied = true;
+    }
+  }
+});
+```
