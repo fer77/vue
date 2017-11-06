@@ -250,3 +250,23 @@ var app = new Vue({
   }
 });
 ```
+
+## 13
+
+Any new Vue instance can listen(`$on`) and emit(`$emit`) events.
+
+Empty Vue instance as a central event bus:
+
+```javascript
+window.Event = new class {
+  constructor() {
+    this.vue = new Vue();
+  }
+  fire(event, data = null) {
+    this.vue.$emit(event, data);
+  }
+  listen(event, callback) {
+    this.vue.$on(event, callback);
+  }
+}
+```
