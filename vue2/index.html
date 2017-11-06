@@ -23,7 +23,7 @@
     <div id="root" class="container">
 
       <!-- child component -->
-      <coupon @applied="onCouponApplied"></coupon>
+      <coupon></coupon>
 
       <!-- parent component, that depends on an event being $emit[ed] from a child component -->
       <h1 v-if="couponApplied">Your coupon saved you 100% on today's purchase!</h1>
