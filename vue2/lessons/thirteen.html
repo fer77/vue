@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <!-- BULMA -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.0/css/bulma.css" />
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+20px|Slabo+27px" rel="stylesheet">
+    <style>
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Slabo 27px', serif;
+      }
+      p, a, button, li {
+        font-family: 'Roboto', sans-serif;
+      }
+      .container {
+        padding-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" class="container">
+
+      <!-- child component -->
+      <coupon></coupon>
+
+      <!-- parent component, that depends on an event being $emit[ed] from a child component -->
+      <h1 v-if="couponApplied">Your coupon saved you 100% on today's purchase!</h1>
+      
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
