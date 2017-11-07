@@ -21,13 +21,14 @@
   </head>
   <body>
     <div id="root" class="container">
+      <modal>
+        <template slot="header">Modal Header (title)</template>
 
-      <!-- child component -->
-      <coupon></coupon>
-
-      <!-- parent component, that depends on an event being $emit[ed] from a child component -->
-      <h1 v-if="couponApplied">Your coupon saved you 100% on today's purchase!</h1>
-      
+        <!-- <template slot="footer">
+          <button class="button is-success">Save changes</button>
+          <button class="button">Cancel</button>
+        </template> -->
+      </modal>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
