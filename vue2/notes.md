@@ -270,3 +270,7 @@ window.Event = new class {
   }
 }
 ```
+
+## 14
+
+`<slot>` elements have a special attribute, `name`, which is great for 'slotting' content into components. You can have multiple slots with different names. A named slot will match any element that has a corresponding slot attribute in the content fragment.
