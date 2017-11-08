@@ -274,3 +274,7 @@ window.Event = new class {
 ## 14
 
 `<slot>` elements have a special attribute, `name`, which is great for 'slotting' content into components. You can have multiple slots with different names. A named slot will match any element that has a corresponding slot attribute in the content fragment.
+
+## 15
+
+When the **inline-template** attribute is present on a child component, the component will use that content as its template, rather than treating it as distributed content. This allows more flexible templating. However, _inline-template_ makes the scope of your templates harder to reason about. It is prefered that templates be defined inside a component using the `template` option or in a `template` element in a `.vue` file.
