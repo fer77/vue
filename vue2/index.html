@@ -21,14 +21,14 @@
   </head>
   <body>
     <div id="root" class="container">
-      <modal>
-        <template slot="header">Modal Header (title)</template>
-
-        <!-- <template slot="footer">
-          <button class="button is-success">Save changes</button>
-          <button class="button">Cancel</button>
-        </template> -->
-      </modal>
+      <progress-view inline-template>
+        <!-- same rules apply to inline-templates of must have 'one child elements'.  -->
+        <div>
+            <h1>Progress {{ completionRate }}%</h1>
+            
+            <button class="button is-info" @click="completionRate += 5">Completed</button>
+        </div>
+      </progress-view>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
