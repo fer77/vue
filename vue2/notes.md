@@ -278,3 +278,71 @@ window.Event = new class {
 ## 15
 
 When the **inline-template** attribute is present on a child component, the component will use that content as its template, rather than treating it as distributed content. This allows more flexible templating. However, _inline-template_ makes the scope of your templates harder to reason about. It is prefered that templates be defined inside a component using the `template` option or in a `template` element in a `.vue` file.
+
+## 16
+
+**Webpack** and **vue-cli**
+
+[Vue-loader](https://vue-loader.vuejs.org/en/start/setup.html)
+
+Getting started:
+
+- `npm install -g vue-cli`
+- `vue init webpack-simple hello-vue`
+- `cd hello-vue`
+- `npm install`
+- `npm run dev`
+
+`webpack.config.js`:
+**loaders** give us a way to apply preprocessing to anything that is required in the app.
+```javascript
+//...
+test: /\.vue$/, //Looks for any .vue file and applies the 'vue-loader'
+loader: 'vue-loader',
+        options: {
+          loaders: {
+            'scss': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader'
+            ],
+            'sass': [
+              'vue-style-loader',
+              'css-loader',
+              'sass-loader?indentedSyntax'
+            ]
+          }
+                  }
+      },
+      {
+        test: /\.js$/, //Looks for any .js files
+        loader: 'babel-loader',
+        exclude: /node_modules/ //except in here.
+      },
+      // other vue-loader options go here
+//...
+```
+
+`package.json`
+```javascript
+// adds comands reletaed to the project:
+  "scripts": {
+    // dev boots up our server: boots up the node environment to development, boots up webpack-dev-server, and adds hot reloading (live-server).
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --open --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+```
+
+Importing a component:
+```javascript
+//...
+import Message from './components/Message.vue'; //1. Import component.
+export default {
+  name: 'app',
+  components: { Message }, //2. Add it to the list of child components.
+  data () {
+    return {}
+  }
+}
+//...
+```
