@@ -346,3 +346,7 @@ export default {
 }
 //...
 ```
+
+## 17
+
+**hot reloading** is reloading the page when you edit a `*.vue` file _without reloading_ the page. It preserves the current state of your app and these swapped components!
