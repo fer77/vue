@@ -350,3 +350,13 @@ export default {
 ## 17
 
 **hot reloading** is reloading the page when you edit a `*.vue` file _without reloading_ the page. It preserves the current state of your app and these swapped components!
+
+## 18
+
+When working on a project with blade and using vue, scape `{{}}` with an `@` or use `v-text="skills"` instead of `{{}}`.
+
+```html
+<li v-for="skill in skills">@{{ skill }}</li>
+```
+
+axios is the recomended aproach by Vue and not  Vue resource.
