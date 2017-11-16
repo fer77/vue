@@ -387,27 +387,76 @@ class Errors {
     this.errors = errors;
   }
   clear(field) {
-    delete this.errors[field]
+    if {
+      (field) delete this.errors[field];
+      return;
+    }
+    this.errors = {};
+  }
+}
+class Form {
+  constructor(data) {
+    this.data = data;
+    for (let field in data) {
+      this[field] = data[field];
+    }
+    this.errors = new Errors();
+  }
+  data() {
+    let data = {}
+    
+    for (let property in this.originalData) {
+      data[property] = this[property];
+    }
+
+    return data;
+  }
+  reset() {
+    for (let field in this.originalData) {
+      this[field] = '';
+    }
+
+        this.errors.clear();
+  }
+  submit(requestType, url) {
+    return new Promise((resolve, reject) => {
+        axios[requestType](url, this.data())
+              .then(response => {
+                this.onSuccess(response.data);
+
+                resolve(response.data);
+              })
+              .catch(reject => {
+                this.onfail(error.response.data);
+
+                reject(error.response.data);
+              });
+      });
+  }
+  onSuccess(data) {
+    // this
+    alert(data.message);
+
+    this.reset();
+  }
+  onFail(errors) {
+    this.errors.record(errors);
   }
 }
 new Vue({
   //...
   data: {
-    name: '',
-    description: '',
+    form: new Form({
+      name: '',
+      description: ''
+      }),
     errors: new Errors()
   },
   methods: {
     onSubmit() {
-      axios.post('/projects', this.$data)
-            .then(this.onSuccess)
-            .catch(error => this.errors.record(error.response.data));
-    },
-    onSuccess(response) {
-      alert(response.data.message);
-
-      this.name = '';
-      this.description = '';
+      this.form.submit('post', '/projects')
+                .then(data => console.log(response))
+                .catch(error => console.log(error));
     }
   }
 })
@@ -415,8 +464,10 @@ new Vue({
 
 ```html
 <!-- add an event keydown to the form and pass the $event to keep from adding a keydown event to all fields -->
-<form @keydown="errors.clear($event.target.name)">
-  <span class="is-danger" v-text="errors.get('name')"></span> //event.target
-  <span class="is-danger" v-text="errors.get('description')"></span> 
+<form @keydown="form.errors.clear($event.target.name)">
+  <span class="is-danger" v-text="form.errors.get('form.name')"></span> //event.target
+  <span class="is-danger" v-text="form.errors.get('form.description')"></span> 
 </form>
 ```
+
+## 19
