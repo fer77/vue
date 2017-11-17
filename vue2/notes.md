@@ -361,7 +361,7 @@ When working on a project with blade and using vue, scape `{{}}` with an `@` or 
 
 axios is the recomended aproach by Vue and not  Vue resource.
 
-## 19
+## 19 - 21
 
 forms:
 a class to handle errors can be created in our vue app.
@@ -470,4 +470,48 @@ new Vue({
 </form>
 ```
 
-## 19
+## 22
+
+`node_modules/.bin/webpack`
+
+`--hide-modules` will hide all this junk:
+
+```javascript
+//...
+[1] ./~/process/browser.js 5.42 kB {0} [built]
+   [2] ./~/axios/lib/defaults.js 2.32 kB {0} [built]
+   [4] ./~/axios/lib/cancel/Cancel.js 385 bytes {0} [built]
+   [5] ./~/axios/lib/cancel/isCancel.js 102 bytes {0} [built]
+//...
+```
+
+`--watch` will watch for changes.
+
+Move all these flags to an npm script:
+
+`package.json`:
+```javascript
+//...
+"scripts": {
+    "webpack": "webpack --hide-modules",
+    "dev": "webpack --hide-modules --watch"
+  },
+//...
+```
+
+**NOTE**
+Vue's npm package exports the _runtime-only_ and not the _standalone_ build.
+
+for the _standalone_ add:
+```javascript
+resolve: {
+  alias: {
+    'vue$': 'vue/dist/vue.common.js'
+  }
+}
+```
+
+When using babel:
+- `npm install babel-loader --save-dev`
+- `npm install babel-core --save-dev`
+- `npm install babel-preset-es2015 --save-dev`
