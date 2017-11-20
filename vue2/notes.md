@@ -515,3 +515,40 @@ When using babel:
 - `npm install babel-loader --save-dev`
 - `npm install babel-core --save-dev`
 - `npm install babel-preset-es2015 --save-dev`
+
+## 23
+
+_laravel mix_ a configuration layer on top of webpack, that simplifies all the actions.
+
+```javascript
+// webpack.mix.js
+//...
+mix.js('(entry point)', '(output file)')
+mix.js('resources/assets/js/app.js', 'public/js');
+//...
+```
+
+To compile acouple of files down we can pass an array and they will be merged into a single bundle: 
+
+```javascript
+//...
+mix.js(['resources/assets/js/app.js', 'resources/assets/js/forum.js'] 'public/js');
+```
+
+To _version_ or _hash_ a file.  A unique hash will be applied top all the file names:
+
+```javascript
+//...
+mix.js(['resources/assets/js/app.js', 'resources/assets/js/forum.js'] 'public/js')
+    .version();
+```
+
+Other options that can be used in our `webpack.mix` file:
+
+```javascript
+//...
+.copy() // to copy some files.
+.minify()
+```
+
+a lot of these won't have to be used, since there are other sripts that will do most of that for us.
