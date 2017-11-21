@@ -552,3 +552,19 @@ Other options that can be used in our `webpack.mix` file:
 ```
 
 a lot of these won't have to be used, since there are other sripts that will do most of that for us.
+
+## 24
+
+Vue source of truth is still an object:
+
+```javascript
+//...
+data: {
+      user: {
+        name: 'Bob Belcher'
+      }
+    }
+    //...
+```
+
+**shared state**
