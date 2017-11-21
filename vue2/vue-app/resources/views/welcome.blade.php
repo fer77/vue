@@ -11,10 +11,11 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div id="app">
-            <ul>
-                <li v-for="skill in skills">@{{ skill }}</li>
-            </ul>
+        <div id="one">
+            <h1>@{{ shared.user.name }}</h1>
+        </div>
+        <div id="two">
+            <h1>@{{ shared.user.name }}</h1>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>

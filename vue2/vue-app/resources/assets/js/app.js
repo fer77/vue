@@ -17,6 +17,20 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
-const app = new Vue({
-    el: '#app'
+let store = {
+	user: {
+		name: 'Bob Belcher'
+	}
+}
+new Vue({
+    el: '#one',
+    data: {
+    	shared: store
+    }
+});
+new Vue({
+    el: '#two',
+    data: {
+    	shared: store
+    }
 });

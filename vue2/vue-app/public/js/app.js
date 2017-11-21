@@ -989,8 +989,22 @@ window.Vue = __webpack_require__(35);
 
 Vue.component('example-component', __webpack_require__(38));
 
-var app = new Vue({
-  el: '#app'
+var store = {
+  user: {
+    name: 'Bob Belcher'
+  }
+};
+new Vue({
+  el: '#one',
+  data: {
+    shared: store
+  }
+});
+new Vue({
+  el: '#two',
+  data: {
+    shared: store
+  }
 });
 
 /***/ }),
