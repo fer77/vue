@@ -16,21 +16,36 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
-
-let store = {
-	user: {
-		name: 'Bob Belcher'
-	}
-}
-new Vue({
-    el: '#one',
-    data: {
-    	shared: store
+// new Vue({
+//     el: '#one',
+//     data: {
+//     	shared: store
+//     }
+// });
+Vue.component('coupon', {
+    props: ['code'],
+    template: `
+    <input type="text" :value="code " @input="updateCode($event.target.value)" ref="input">
+    `,
+    data() {
+        return {
+            invalidCodes: ['all free', 'something else']
+        }
+    },
+    methods: {
+        updateCode(code) {
+            // validation, stripping, 'sanitation' can be done here
+            if ( this.invalidCodes.includes(code)) {
+                alert('This coupon is no longer valid!!');
+                this.$refs.input.value = code = '';
+            }
+            this.$emit('input', code);
+        }
     }
 });
 new Vue({
-    el: '#two',
+    el: '#app',
     data: {
-    	shared: store
+    	coupon: 'FREEBIE'
     }
 });
