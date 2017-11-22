@@ -568,3 +568,43 @@ data: {
 ```
 
 **shared state**
+
+## 25
+
+when we use `v-model=''` is the same as using `:value='' @input=`
+When using a component `v-model` but its long form will:
+
+```javascript
+// This won't work
+Vue.component('coupon', {
+    template: `
+    <input type="text" v-model="coupon">
+    `
+});
+```
+
+nor this:
+
+```html
+<input type="text" v-model="coupon">
+```
+
+but this will work:
+
+```javascript
+Vue.component('coupon', {
+    props: ['code'],
+    template: `
+    <input type="text" :value="code " @input="updateCode($event.target.value)">
+    `,
+    methods: {
+        updateCode(code) {
+            this.$emit('input', code);
+        }
+    }
+});
+```
+
+- use `v-model` to sync with the Vue root instance
+- bind the `:value`
+- listen/emit an `$event`
