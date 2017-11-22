@@ -11,11 +11,11 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div id="one">
-            <h1>@{{ shared.user.name }}</h1>
-        </div>
-        <div id="two">
-            <h1>@{{ shared.user.name }}</h1>
+        <div id="app">
+            {{-- Same as writing --}}
+            {{-- <input type="text" v-model="coupon"> --}}
+            {{-- <input type="text" :value="coupon" @input="coupon = $event.target.value"> --}}
+            <coupon v-model="coupon"></coupon>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>

@@ -988,23 +988,37 @@ window.Vue = __webpack_require__(35);
  */
 
 Vue.component('example-component', __webpack_require__(38));
+// new Vue({
+//     el: '#one',
+//     data: {
+//     	shared: store
+//     }
+// });
+Vue.component('coupon', {
+    props: ['code'],
+    template: '\n    <input type="text" :value="code " @input="updateCode($event.target.value)" ref="input">\n    ',
+    data: function data() {
+        return {
+            invalidCodes: ['all free', 'something else']
+        };
+    },
 
-var store = {
-  user: {
-    name: 'Bob Belcher'
-  }
-};
-new Vue({
-  el: '#one',
-  data: {
-    shared: store
-  }
+    methods: {
+        updateCode: function updateCode(code) {
+            // validation, stripping, 'sanitation' can be done here
+            if (this.invalidCodes.includes(code)) {
+                alert('This coupon is no longer valid!!');
+                this.$refs.input.value = code = '';
+            }
+            this.$emit('input', code);
+        }
+    }
 });
 new Vue({
-  el: '#two',
-  data: {
-    shared: store
-  }
+    el: '#app',
+    data: {
+        coupon: 'FREEBIE'
+    }
 });
 
 /***/ }),
