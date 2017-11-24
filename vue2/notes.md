@@ -608,3 +608,76 @@ Vue.component('coupon', {
 - use `v-model` to sync with the Vue root instance
 - bind the `:value`
 - listen/emit an `$event`
+
+## 26
+
+SPAs:
+
+- Entry point `app.js`
+  - `import ./bootstrap.js` pulls in 
+    - `import Vue from 'vue'`, `import VueRouter from 'vue-router';`, `import axios from 'axios';`, and assigns them to the `window` object.
+  - Build a vue instance and bind it (assign an id) to an element.
+  - `import router from './routes';` pulls in `routes.js`
+
+```javascript
+new Vue({
+    el: '#app',
+
+    router
+});
+```
+
+- Set up `routes.js`
+  - `import VueRouter from 'vue-router';`
+    - Export an instance of the _VueRouter_ and tell `Vue.use(VueRouter);`
+
+```javascript
+// routes.js
+let routes = [
+  {
+    path: '/',
+    // simply associating endpoints to components
+    component: require('./views/Home')
+  },
+//...
+];
+export default new VueRouter({
+  routes
+  //...
+});
+```
+
+[router-link](https://router.vuejs.org/en/api/router-link.html)
+
+`<router-link>` is a component that enables navigation in a router-enabled app and renders the same as an `<a>` tag with correct `href` by default, but can be configured with the `tag` prop. Location is specified with the `to` prop. In addition, the link automatically gets an active CSS class when the target route is active.
+
+`exact` The default active class matching behavior is _inclusive match_. For example, `<router-link to="/a">` will get an active class applied as long as the current path starts with /a/ or is /a.
+
+One consequence of this is that `<router-link to="/">` will be active for every route! To force the link into "exact match mode", use the `exact` prop:
+
+```html
+<!-- this link will only be active at `/` -->
+  <router-link to="/" exact>
+```
+
+Configure the active CSS class applied when the link is active with `exact` match. Note the default value can also be configured globally via the `linkExactActiveClass` router constructor option.
+
+```javascript
+// routes.js
+export default new VueRouter({
+  //...
+  linkActiveClass: 'is-active'
+});
+```
+
+`tag` Sometimes we need `<router-link>` to render as diffrent tag, e.g `<li>`. Then use the `tag` prop to specify which tag to render to.
+
+```html
+<router-link to="/foo" tag="li">foo</router-link>
+<!-- renders as -->
+<li>foo</li>
+```
+
+[named views](https://router.vuejs.org/en/essentials/named-views.html)
+
+`<router-view>` 
