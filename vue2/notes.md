@@ -156,7 +156,7 @@ Components cannot use `data:` object inside a component. `data()` must be a func
   data: function () {
     return //...
   }
-  
+
 //...
 ```
 
@@ -404,7 +404,7 @@ class Form {
   }
   data() {
     let data = {}
-    
+
     for (let property in this.originalData) {
       data[property] = this[property];
     }
@@ -466,7 +466,7 @@ new Vue({
 <!-- add an event keydown to the form and pass the $event to keep from adding a keydown event to all fields -->
 <form @keydown="form.errors.clear($event.target.name)">
   <span class="is-danger" v-text="form.errors.get('form.name')"></span> //event.target
-  <span class="is-danger" v-text="form.errors.get('form.description')"></span> 
+  <span class="is-danger" v-text="form.errors.get('form.description')"></span>
 </form>
 ```
 
@@ -528,7 +528,7 @@ mix.js('resources/assets/js/app.js', 'public/js');
 //...
 ```
 
-To compile acouple of files down we can pass an array and they will be merged into a single bundle: 
+To compile acouple of files down we can pass an array and they will be merged into a single bundle:
 
 ```javascript
 //...
@@ -608,3 +608,5 @@ Vue.component('coupon', {
 - use `v-model` to sync with the Vue root instance
 - bind the `:value`
 - listen/emit an `$event`
+
+## 26
