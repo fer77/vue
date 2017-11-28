@@ -4,10 +4,12 @@
             <div class="column">
                 <div class="message" v-for="status in statuses">
                     <div class="message-header">
-                      <p>{{ status.user.name }} said...</p>
-                      <p>{{ postedOn(status) }}</p>
-                    </div>
 
+                      <p>{{ status.user.name }} said...</p>
+
+                      <p>{{ status.created_at | ago }}</p>
+
+                    </div>
                     <div class="message-body" v-text="status.body"></div>
                 </div>
             </div>
@@ -25,14 +27,14 @@
           statuses: []
         }
       },
+      filters: {
+        ago(date) {
+          return moment(date).fromNow();
+        }
+      },
       created() {
         // passing an anonymous function to the all() method
         Status.all(statuses => this.statuses = statuses);
-      },
-      methods: {
-        postedOn(status) {
-          return moment(status.created_at).fromNow();
-        }
       }
   }
 </script>
