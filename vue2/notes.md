@@ -681,3 +681,36 @@ export default new VueRouter({
 [named views](https://router.vuejs.org/en/essentials/named-views.html)
 
 `<router-view>`
+
+## 27 - 28
+
+**filter** (simple functions) Filters should be appended to the end of the JavaScript expression, denoted by the “pipe” symbol:
+
+```html
+<!-- in mustaches -->
+{{ message | capitalize }}
+<!-- in v-bind -->
+<div v-bind:id="rawId | formatId"></div>
+```
+
+You can define local filters in a component’s options:
+
+```JavaScript
+filters: {
+  capitalize: function (value) {
+    if (!value) return ''
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+}
+```
+
+or define a filter globally:
+
+```javascript
+Vue.filter('capitalize', function (value) {
+  if (!value) return ''
+  value = value.toString()
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
+```
