@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import axios from 'axios';
+import Form from './utilities/Form';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
@@ -26,3 +27,5 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+window.Form = Form;
