@@ -12,6 +12,9 @@
                     </div>
                     <div class="message-body" v-text="status.body"></div>
                 </div>
+                <!-- add to stream form -->
+                <add-to-stream @completed="addStatus"></add-to-stream>
+                <!-- @completed listens for the $emit event from AddToStrea -->
             </div>
         </div>
     </div>
@@ -20,8 +23,10 @@
 <script>
   import moment from 'moment';
   import Status from '../models/Status';
+  import AddToStream from '../components/AddToStream.vue';
 
   export default {
+    components: { AddToStream },
       data() {
         return {
           statuses: []
@@ -35,6 +40,16 @@
       created() {
         // passing an anonymous function to the all() method
         Status.all(statuses => this.statuses = statuses);
+      },
+      methods: {
+        addStatus(status) {
+          //unshift will prepend the status
+          this.statuses.unshift(status);
+
+          alert('Posted status successfully');
+
+          window.scrollTo(0, 0);
+        }
       }
   }
 </script>
