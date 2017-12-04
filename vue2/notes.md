@@ -714,3 +714,89 @@ Vue.filter('capitalize', function (value) {
   return value.charAt(0).toUpperCase() + value.slice(1)
 })
 ```
+
+## 30
+
+1. specify the test configuration (ava in this example):
+
+```javascript
+// package.json
+
+  //...
+  "ava": {
+    "require": [
+      "babel-register",
+      "./test/helpers/setup-browser-env.js"
+    ]
+  },
+  //...
+```
+
+2. transpile if needed to do things like `import` es2015 code:
+
+```javascript
+// package.json
+
+  //...
+  "ava": {
+    "require": [
+      "babel-register",
+      //...
+    ]
+  },
+  //...
+```
+
+3. mock a browser environment if needed:
+
+```javascript
+// package.json
+
+  //...
+  "devDependencies": {
+      //...
+      "browser-env": "^3.2.4"
+    },
+  //...
+```
+
+and instantiate it like this:
+
+```javascript
+//setup-browser-env.js
+
+import browserEnv from 'browser-env';
+
+browserEnv();
+```
+
+and require that file for processing by _ava_:
+
+```javascript
+// package.json
+
+  //...
+  "ava": {
+    "require": [
+      //...
+      "./test/helpers/setup-browser-env.js"
+    ]
+  },
+  //...
+```
+
+which alows us to work with the DOM by mocking out the DOM objec.
+
+4. require Babel:
+
+```javascript
+// package.json
+
+//...
+"babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+//...
+```
