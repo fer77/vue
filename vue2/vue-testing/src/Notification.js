@@ -1,7 +1,11 @@
 export default {
-    data() {
-        return {
-            message: 'Hello World'
+    template: '<div>{{ notification }}</div>',
+
+    props: ['message'],
+
+    computed: {
+        notification() {
+            return this.message.toUpperCase();
         }
     }
 };
