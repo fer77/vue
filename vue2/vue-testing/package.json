@@ -1,0 +1,22 @@
+{
+  "name": "vue-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "ava": {
+    "require": ["babel-register"]
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "babel-register": "^6.26.0"
+  },
+  "dependencies": {
+    "vue": "^2.5.9"
+  }
+}
