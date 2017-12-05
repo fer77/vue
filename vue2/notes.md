@@ -800,3 +800,7 @@ which alows us to work with the DOM by mocking out the DOM objec.
   },
 //...
 ```
+
+## 31
+
+_compund words_ potential code smell.
