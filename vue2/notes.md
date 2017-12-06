@@ -808,3 +808,33 @@ _compund words_ potential code smell.
 ## 32
 
 _collection_ inheriting functionality.
+
+## 33
+
+**scoped slots** A scoped slot is a special type of slot that functions as a reusable template (that can be passed data to) instead of already-rendered-elements.
+
+A more typical use case for scoped slots would be a list component that is easy to customize how each item in the list should be rendered:
+
+```html
+<my-awesome-list :items="items">
+  <!-- scoped slot can be named too -->
+  <li
+    slot="item"
+    slot-scope="props"
+    class="my-fancy-item">
+    {{ props.text }}
+  </li>
+</my-awesome-list>
+```
+
+And the template for the list component:
+
+```html
+<ul>
+  <slot name="item"
+    v-for="item in items"
+    :text="item.text">
+    <!-- fallback content here -->
+  </slot>
+</ul>
+```
