@@ -9,3 +9,23 @@ Getting started:
 - `npm install expect --save-dev`
 - `npm install vue-template-compiler --save-dev`
 - `npm install --save-dev jsdom jsdom-global`
+- `npm install vue-loader --save-dev`
+
+## 2
+
+`webpack.config.js`
+
+intersept any `.vue` file and run through `vue-loader`
+
+```javascript
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: /\.vue$/,
+                use: 'vue-loader'
+            }
+        ]
+    }
+}
+```
