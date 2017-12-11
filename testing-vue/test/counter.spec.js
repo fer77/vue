@@ -1,5 +1,5 @@
 import { mount } from 'vue-test-utils'; // this will mount the component in isolation, mocking all the inputs
-import Counter from '../src/components/Counter.js';
+import Counter from '../src/components/Counter.vue';
 import expect from 'expect';
 
 // 'describe' comes from Mocha
