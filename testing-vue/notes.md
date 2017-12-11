@@ -29,3 +29,28 @@ module.exports = {
     }
 }
 ```
+
+## 3
+
+`.only` triggers only that part of the test:
+
+```javascript
+//...
+it.only('decrements the count when an decrement button is clicked', () => {
+        //...
+```
+
+[https://vue-test-utils.vuejs.org/en/api/wrapper/hasStyle.html](hasStyle)
+
+
+the `.hasStyle('display', 'none')` method accepts any css property/value and assert wether thats `.toBe(true)` or `.toBe(false)`.
+
+[https://vue-test-utils.vuejs.org/en/api/wrapper/setData.html](setData)
+
+if we don't want the UI to set the count, then set it automatically:
+
+```javascript
+//...
+     wrapper.setData({ count: 1 })
+//...
+```
