@@ -54,3 +54,23 @@ if we don't want the UI to set the count, then set it automatically:
      wrapper.setData({ count: 1 })
 //...
 ```
+
+## 4
+
+Test doesn't test implementation, only that the test gets what it espects.  All this can be tested without opening the browser.
+
+`wrapper.contains` will expect an element name or its tag name.
+
+```javascript
+//...
+expect(wrapper.contains('ul')).toBe(false);
+//...
+```
+
+`expect().toContain` checks for text to exist in an element.
+
+```javascript
+//...
+expect(wrapper.find('ul').text()).toContain('Go to store');
+//...
+```
