@@ -74,3 +74,9 @@ expect(wrapper.contains('ul')).toBe(false);
 expect(wrapper.find('ul').text()).toContain('Go to store');
 //...
 ```
+
+## 5
+
+Do not test implementation details.
+
+`.toBeTruthy()` not the boolean, but a value that evaluates to `true` or `false`.
