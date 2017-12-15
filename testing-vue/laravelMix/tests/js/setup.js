@@ -1,0 +1,1 @@
+require('jsdom-global')(); // simulates a browser environment with node
