@@ -80,3 +80,41 @@ expect(wrapper.find('ul').text()).toContain('Go to store');
 Do not test implementation details.
 
 `.toBeTruthy()` not the boolean, but a value that evaluates to `true` or `false`.
+
+## 6
+
+[https://vue-test-utils.vuejs.org/en/guides/testing-SFCs-with-mocha-webpack.html](workflow):
+
+- `npm install --save-dev vue-test-utils mocha mocha-webpack`
+- `npm install --save-dev jsdom jsdom-global`
+- `npm install --save-dev expect`
+
+setup a test script with the paths to setup the test and perform the tests:
+
+`"test": "mocha-webpack --webpack-config=node_modules/laravel-mix/setup/webpack.config.js --require test/js/setup.js tests/js/**/*.spec.js"`
+
+add files to test and write some tests:
+
+- import files:
+
+```javascript
+// example.spec.js
+import { mount } from 'vue-test-utils';
+import expect from 'expect';
+import Example from '../../resources/assets/js/components/ExampleComponent.vue';
+//...
+```
+
+-describe your tests:
+
+```javascript
+// example.spec.js
+describe('Example', () => {
+    it('says that it is an example component', () => {
+        let wrapper = mount(Example);
+
+        expect(wrapper.html()).toContain('Example Component');
+    });
+});
+//...
+```
