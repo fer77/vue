@@ -118,3 +118,27 @@ describe('Example', () => {
 });
 //...
 ```
+
+## 7
+
+think of `props` as inmutable. this can be done by initializing the prop and setting its default value equal to what is passed in from the prop. something like:
+
+```javascript
+export default {
+        props: ['dataQuestion'],
+
+        data() {
+            return {
+                question: this.dataQuestion,
+                editing: false
+            };
+        }
+    }
+```
+
+has same effect as
+
+```html
+<!-- gets assigned to the data property -->
+ <question data-question="{}"></question>
+```
