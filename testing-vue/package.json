@@ -20,5 +20,9 @@
     "vue-template-compiler": "^2.5.9",
     "vue-test-utils": "^1.0.0-beta.6",
     "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "axios": "^0.17.1",
+    "moxios": "^0.4.0"
   }
 }
