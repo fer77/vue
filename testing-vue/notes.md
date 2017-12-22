@@ -142,3 +142,49 @@ has same effect as
 <!-- gets assigned to the data property -->
  <question data-question="{}"></question>
 ```
+
+## 8
+
+[https://github.com/axios/moxios](Moxios), a first-party library for mocking Axios requests.
+
+set up:
+
+- `import moxios from 'moxios'`
+- import and pass your custom axios instance to this method
+    `moxios.install()`
+- then uninstall
+    `moxios.uninstall()`
+
+```javascript
+// Question.spec.js
+
+import moxios from 'moxios'
+
+beforeEach(function () {
+      // import and pass your custom axios instance to this method
+      moxios.install()
+    })
+
+afterEach(function () {
+    // import and pass your custom axios instance to this method
+    moxios.uninstall()
+})
+
+// Match against an exact URL value
+    //...
+        moxios.stubRequest('/say/hello', {
+            status: 200,
+            responseText: 'hello'
+        })
+    //...
+    // wait for the request to complete:
+        moxios.wait(function () {
+            // then we can perform our assertions here.
+            done()
+        })
+    //...
+```
+
+use the `done()` when there are asynchronous calls in a test. This will "manually" tell our test suite (Mocha) when our test is done.
+
+_Sinon_ and _test double_ are better options, because they are more generic.  
