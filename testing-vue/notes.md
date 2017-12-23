@@ -187,4 +187,8 @@ afterEach(function () {
 
 use the `done()` when there are asynchronous calls in a test. This will "manually" tell our test suite (Mocha) when our test is done.
 
-_Sinon_ and _test double_ are better options, because they are more generic.  
+_Sinon_ and _test double_ are better options, because they are more generic.
+
+## 9
+
+in Vue _computed properties_ are cached.
