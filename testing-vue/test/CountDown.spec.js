@@ -1,21 +1,86 @@
 import { mount } from 'vue-test-utils';
 import expect from 'expect';
 import CountDown from '../src/components/CountDown.vue';
-import moment from 'moment'
+import moment from 'moment';
+import sinon from 'sinon';
 
 describe('CountDown', () => {
-    let wrapper;
+    let wrapper,
+        clock;
 
     beforeEach(() => {
-        wrapper = mount(CountDown);
+        clock = sinon.useFakeTimers();
+
+        wrapper = mount(CountDown, {
+            propsData: {
+                until: moment().add(10, 'seconds')
+            }
+        });
     });
 
-    it('shows a count-down timer', () => {
+    afterEach(() => clock.restore);
 
-        wrapper.seteProps({ until: moment().add(10, 'seconds') });
+    it('shows a countdown timer', () => {
         //<countdown until="December 5 2017">
 
+        see('0 Days');
+        see('0 Hours');
+        see('0 Minutes');
         see('10 Seconds');
+    });
+
+    it('reduces the countdown every second', (done) => {
+
+        see('10 Seconds');
+
+        clock.tick(1000);
+
+        // update on the next 'batch' update
+        assertOnEaTick(() => {
+            see('9 Seconds');
+        }, done);
+    });
+
+    it('displays an expired message when the countdown reaches 0', (done) => {
+
+        clock.tick(10000);
+
+        assertOnEaTick(() => {
+            see('Now Expired');
+        }, done);
+    });
+
+    it('displays a custom expired message when the countdown reaches 0', (done) => {
+        wrapper.setProps({ expiredText: 'Countdown is over.' });
+
+        clock.tick(10000);
+
+        assertOnEaTick(() => {
+            see('Countdown is over.');
+        }, done);
+    });
+
+    it('broadcasts when the countdown is finished', (done) => {
+        wrapper.setProps({ until: moment().add(10, 'seconds') });
+
+        clock.tick(10000);
+
+        assertOnEaTick(() => {
+            expect(wrapper.emitted().finished).toBeTruthy();
+        }, done);
+    });
+
+    it('clears interval when completed', (done) => {
+        wrapper.setProps({ until: moment().add(10, 'seconds') });
+
+        clock.tick(10000);
+
+        // console.log(wrapper.vm.now.getSeconds());
+        expect(wrapper.vm.now.getSeconds()).toBe(10);
+
+        assertOnEaTick(() => {
+            clock.tick(5000);
+        }, done);
     });
 
 // Helper functions:
@@ -32,4 +97,17 @@ describe('CountDown', () => {
     let click = selector => {
         wrapper.find(selector).trigger('click');
     };
+
+    let assertOnEaTick = (callback, done) => {
+        wrapper.vm.$nextTick(() => {
+            try {
+                // assertion
+                callback();
+
+                done();
+            } catch(error) {
+                done(error);
+            }
+        });
+    }
 });

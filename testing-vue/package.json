@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/Question.spec.js",
-    "watch": "mocha-webpack --webpack-config webpack.config.js --watch --require test/setup.js test/Question.spec.js"
+    "test": "mocha-webpack --webpack-config webpack.config.js --require test/setup.js test/CountDown.spec.js",
+    "watch": "mocha-webpack --webpack-config webpack.config.js --watch --require test/setup.js test/CountDown.spec.js"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +16,7 @@
     "jsdom-global": "^3.0.2",
     "mocha": "^4.0.1",
     "mocha-webpack": "^1.0.1",
+    "sinon": "^4.1.3",
     "vue-loader": "^13.5.0",
     "vue-template-compiler": "^2.5.9",
     "vue-test-utils": "^1.0.0-beta.6",
