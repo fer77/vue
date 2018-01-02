@@ -192,3 +192,7 @@ _Sinon_ and _test double_ are better options, because they are more generic.
 ## 9
 
 in Vue _computed properties_ are cached.
+
+## 10
+
+`async`
