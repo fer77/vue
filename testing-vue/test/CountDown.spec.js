@@ -29,48 +29,47 @@ describe('CountDown', () => {
         see('10 Seconds');
     });
 
-    it('reduces the countdown every second', (done) => {
+    it('reduces the countdown every second', async () => {
 
         see('10 Seconds');
 
         clock.tick(1000);
 
-        // update on the next 'batch' update
-        assertOnEaTick(() => {
-            see('9 Seconds');
-        }, done);
+        await wrapper.vm.$nextTick();// pause until the resolution of this returned promise.
+
+        see('9 Seconds');// continue on...
     });
 
-    it('displays an expired message when the countdown reaches 0', (done) => {
+    it('displays an expired message when the countdown reaches 0', async () => {
 
         clock.tick(10000);
 
-        assertOnEaTick(() => {
-            see('Now Expired');
-        }, done);
+        await wrapper.vm.$nextTick();
+
+        see('Now Expired');
     });
 
-    it('displays a custom expired message when the countdown reaches 0', (done) => {
+    it('displays a custom expired message when the countdown reaches 0', async () => {
         wrapper.setProps({ expiredText: 'Countdown is over.' });
 
         clock.tick(10000);
 
-        assertOnEaTick(() => {
-            see('Countdown is over.');
-        }, done);
+        await wrapper.vm.$nextTick();
+
+        see('Countdown is over.');
     });
 
-    it('broadcasts when the countdown is finished', (done) => {
+    it('broadcasts when the countdown is finished', async () => {
         wrapper.setProps({ until: moment().add(10, 'seconds') });
 
         clock.tick(10000);
 
-        assertOnEaTick(() => {
-            expect(wrapper.emitted().finished).toBeTruthy();
-        }, done);
+        await wrapper.vm.$nextTick();
+
+        expect(wrapper.emitted().finished).toBeTruthy();
     });
 
-    it('clears interval when completed', (done) => {
+    it('clears interval when completed', async () => {
         wrapper.setProps({ until: moment().add(10, 'seconds') });
 
         clock.tick(10000);
@@ -78,9 +77,9 @@ describe('CountDown', () => {
         // console.log(wrapper.vm.now.getSeconds());
         expect(wrapper.vm.now.getSeconds()).toBe(10);
 
-        assertOnEaTick(() => {
-            clock.tick(5000);
-        }, done);
+        await wrapper.vm.$nextTick();
+
+        clock.tick(5000);
     });
 
 // Helper functions:
@@ -97,17 +96,4 @@ describe('CountDown', () => {
     let click = selector => {
         wrapper.find(selector).trigger('click');
     };
-
-    let assertOnEaTick = (callback, done) => {
-        wrapper.vm.$nextTick(() => {
-            try {
-                // assertion
-                callback();
-
-                done();
-            } catch(error) {
-                done(error);
-            }
-        });
-    }
 });
