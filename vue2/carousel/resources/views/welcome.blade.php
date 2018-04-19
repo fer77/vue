@@ -21,13 +21,10 @@
                 <img src="https://placeimg.com/640/480/any?5">
             </carousel>
         </div>
-        
-
-        {{-- <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true }'>
-            
-        </div> --}}
 
         <!-- JavaScript -->
-        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        {{-- <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script> --}}
+
+        <script src="/js/app.js"></script>
     </body>
 </html>

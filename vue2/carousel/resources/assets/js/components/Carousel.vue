@@ -1,20 +1,16 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Carousel</div>
 
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div data-flickity='{ "cellAlign": "left", "contain": true, "wrapAround": true }'>
+        <slot></slot>
     </div>
+
 </template>
 
 <script>
+import Flickity from 'flickity';
+// Styles can be imported from the node modules if NPM was used:
+import 'flickity/dist/flickity.min.css';
+
     export default {
         mounted() {
             console.log('Component mounted.')
