@@ -1,7 +1,11 @@
 <template>
   <div id="app">
+    <H3>Option one</H3>
     <p>Hover over <span data-tooltip="I'm a tooltip!!!">this</span></p>
     <p>And <span data-tooltip="I'm a tooltip!!!" data-tooltip-placement="right">this too</span></p>
+
+    <h3>Option two</h3>
+    <p>Hover over <span v-tooltip:right="'I\'m a tooltip too!!!'">this</span></p>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
@@ -44,6 +48,7 @@ export default {
 </style>
 // NOTES
 
-/*
-.dataset provides read/write access to all the custom data attributes (data-*) set on the element. This access is available both in HTML and within the DOM...(https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).
- */
+// .dataset provides read/write access to all the custom data attributes (data-*) set on the element. This access is available both in HTML and within the DOM...(https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset).
+
+// v-tooltip:top (argument)
+// v-tooltip.top (modifier)
