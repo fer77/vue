@@ -6,18 +6,28 @@
 
     <h3>Option two</h3>
     <p>Hover over <span v-tooltip:right="'I\'m a tooltip too!!!'">this</span></p>
+
+    <h3>Option three</h3>
+    <p>Hover over <span data-tooltip-name="tooltip-template">this tooltip</span> from a template</p>
+    <tooltip-template name="tooltip-template" placement="bottom">
+      <h1>tooltip template header</h1>
+      <p>
+        tooltip template body.
+      </p>
+    </tooltip-template>
     <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
+import TooltipTemplate from './components/Tooltip.vue';
 import Tooltip from "tooltip.js";
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld
+    TooltipTemplate
   },
   mounted() {
     document.querySelectorAll('[data-tooltip]').forEach(elem => {
