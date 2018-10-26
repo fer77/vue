@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <HelloWorld/>
+
     <H3>Option one</H3>
     <p>Hover over <span data-tooltip="I'm a tooltip!!!">this</span></p>
     <p>And <span data-tooltip="I'm a tooltip!!!" data-tooltip-placement="right">this too</span></p>
@@ -15,19 +17,20 @@
         tooltip template body.
       </p>
     </tooltip-template>
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import TooltipTemplate from './components/Tooltip.vue';
+import HelloWorld from './components/HelloWorld.vue';
 import Tooltip from "tooltip.js";
 
 export default {
   name: 'app',
   components: {
-    TooltipTemplate
+    TooltipTemplate,
+    HelloWorld
   },
   mounted() {
     document.querySelectorAll('[data-tooltip]').forEach(elem => {
@@ -36,7 +39,7 @@ export default {
         title: elem.dataset.tooltip
       });
     });
-  }
+  },
 }
 </script>
 
@@ -62,3 +65,5 @@ export default {
 
 // v-tooltip:top (argument)
 // v-tooltip.top (modifier)
+
+//createElement helper function sometimes referred to as 'h' for hyperscript render h => h("h1","Hello World")...(https://vuejs.org/v2/guide/render-function.html#createElement-Arguments)
