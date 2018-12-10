@@ -1,17 +1,27 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+      <p>Scroll down &darr;</p>
+      <div class="container">
+        <div class="col-1-3">
+          <CountUp :to="105" />
+        </div>
+        <div class="col-1-3">
+          <CountUp :to="55" />
+        </div>
+        <div class="col-1-3">
+          <CountUp :to="5" />
+        </div>
+      </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CountUp from './components/CountUp.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    CountUp
   }
 }
 </script>
@@ -24,5 +34,16 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  /* for demonstration purposes only */
+  margin-top: 1500px;
+  margin-bottom: 500px;
+}
+.col-1-3 {
+  display: inline-block;
+  width: 32.3%;
 }
 </style>
